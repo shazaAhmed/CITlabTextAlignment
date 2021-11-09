@@ -23,7 +23,7 @@ public class AlignText {
 
     long startTime = System.currentTimeMillis();
 
-    TextAligner textAligner = new TextAligner(" ", 4.0, 0.2, 6.0, 0 // threshold 0.1: only very trustful matches, less than 0.01 = caution
+    TextAligner textAligner = new TextAligner(" ", args[0], args[1], 6.0, 0 // threshold 0.1: only very trustful matches, less than 0.01 = caution
     );
     Scanner s1;
     Scanner s2;
@@ -31,7 +31,7 @@ public class AlignText {
     ArrayList<String> recos = new ArrayList<String>();
 
     try {
-      s1 = new Scanner(new File(args[0]));
+      s1 = new Scanner(new File(args[2]));
 
       while (s1.hasNextLine()) {
         references.add(s1.nextLine());
@@ -42,7 +42,7 @@ public class AlignText {
     }
 
     try {
-      s2 = new Scanner(new File(args[1]));
+      s2 = new Scanner(new File(args[3]));
       while (s2.hasNextLine()) {
         recos.add(s2.nextLine());
       }
@@ -51,7 +51,7 @@ public class AlignText {
       e.printStackTrace();
     }
 
-    CharMap cm = getCharMap(args[2]);
+    CharMap cm = getCharMap(args[4]);
 
     List<ConfMat> recoConfMatsList = new ArrayList<>();
     for (String reco : recos) {
